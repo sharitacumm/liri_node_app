@@ -1,15 +1,14 @@
 var axios = require("axios")
-
 console.log("working");
 function movie(){
-    axios.get('http://www.omdbapi.com/?t=jaws&apikey=d1abf912').then(function (response) {
-
+    axios.get('http://www.omdbapi.com/?t=' + process.argv[3] + '&apikey=d1abf912').then(function (response) {
+      
     console.log(response.data);
-  })
-  }
+  });
+}
 
 function bands(){
-    axios.get("https://rest.bandsintown.com/artists/smino/events?app_id=codingbootcamp&date=upcoming").then(function (response) {
+    axios.get("https://rest.bandsintown.com/artists/" + process.argv[3] + "/events?app_id=codingbootcamp&date=upcoming").then(function (response) {
 
     console.log(response.data);
   })
@@ -34,14 +33,14 @@ console.log(data.tracks.items[0].album.artists);
 }
 
 if (process.argv[2] === "movie") {
-    console.log("do movie stuff")
-    movie()
+    console.log("do movie stuff");
+    movie();
 }
 else if (process.argv[2] === "songs") {
-    console.log("do spotify stuff")
-    spotify()
+    console.log("do spotify stuff");
+    spotify();
 }
 else if (process.argv[2] === "concerts") {
-    console.log("do band stuff")
-    bands()
+    console.log("do band stuff");
+    bands();
 }
